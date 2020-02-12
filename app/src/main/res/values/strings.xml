@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">The Meal</string>
+    <string name="no_meals_error">No se encontraron platos</string>
+</resources>

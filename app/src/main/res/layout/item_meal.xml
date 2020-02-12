@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="meal" type="com.mmarengo.myrecipe.model.Meal"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/item_padding"
+        android:paddingBottom="@dimen/item_padding"
+        android:paddingStart="@dimen/item_padding_lateral"
+        android:paddingEnd="@dimen/item_padding_lateral"
+        android:background="?android:attr/selectableItemBackground">
+
+        <ImageView
+            android:id="@+id/meal_image"
+            android:layout_width="@dimen/thumb_size"
+            android:layout_height="@dimen/thumb_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/name_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/item_text_start_margin"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:text="@{meal.name}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/meal_image"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            tools:text="Name" />
+
+        <TextView
+            android:id="@+id/category_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/item_text_start_margin"
+            android:layout_marginTop="@dimen/item_text_top_margin"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:text="@{meal.category}"
+            android:maxLines="1"
+            android:ellipsize="end"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/meal_image"
+            app:layout_constraintTop_toBottomOf="@id/name_text"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.0"
+            tools:text="Category"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
