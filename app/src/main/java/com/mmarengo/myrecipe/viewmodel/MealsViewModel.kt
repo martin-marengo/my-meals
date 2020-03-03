@@ -11,7 +11,11 @@ import com.mmarengo.myrecipe.repository.ResponseCallback
 
 class MealsViewModel : ViewModel() {
 
-    private val mealRepository = MealsRepository()
+    private val mealRepository: MealsRepository by lazy { MealsRepository() }
+
+    private var _currentSearch: String? = null
+    val currentSearch: String?
+        get() = _currentSearch
 
     private val _dataMeals = MutableLiveData<List<Meal>>()
     val dataMeals: LiveData<List<Meal>>
@@ -25,6 +29,10 @@ class MealsViewModel : ViewModel() {
     val eventError: LiveData<Int>
         get() = _eventError
 
+    private val _eventMealTapped = MutableLiveData<Meal?>()
+    val eventMealTapped: LiveData<Meal?>
+        get() = _eventMealTapped
+
     init {
         // Set initial image.
     }
@@ -32,6 +40,15 @@ class MealsViewModel : ViewModel() {
     fun searchMeals(query: String) {
         _dataIsLoading.value = true
         mealRepository.searchMeal(query, searchResponseCallback)
+        _currentSearch = query
+    }
+
+    fun onMealTapped(meal: Meal) {
+        _eventMealTapped.value = meal
+    }
+
+    fun onMealTappedFinished() {
+        _eventMealTapped.value = null
     }
 
     private val searchResponseCallback = object : ResponseCallback<List<Meal>> {

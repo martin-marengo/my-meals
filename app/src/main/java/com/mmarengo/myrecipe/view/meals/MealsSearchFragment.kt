@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.mmarengo.myrecipe.R
 import com.mmarengo.myrecipe.databinding.FragmentMealsSearchBinding
+import com.mmarengo.myrecipe.model.Meal
 import com.mmarengo.myrecipe.viewmodel.MealsViewModel
 
 class MealsSearchFragment : Fragment() {
@@ -38,6 +39,8 @@ class MealsSearchFragment : Fragment() {
 
         setUpMealList()
         setUpObservers()
+
+        viewModel.currentSearch?.let { binding.mealsSearchEdit.setText(it) }
 
         return binding.root
     }
@@ -69,6 +72,13 @@ class MealsSearchFragment : Fragment() {
             adapter.submitList(mealList)
             // Set image for empty result.
         })
+
+        viewModel.eventMealTapped.observe(viewLifecycleOwner, Observer { meal ->
+            meal?.let {
+                onMealTapped(meal)
+                viewModel.onMealTappedFinished()
+            }
+        })
     }
 
     private fun setUpSearchBox() {
@@ -92,12 +102,14 @@ class MealsSearchFragment : Fragment() {
             binding.mealsRecycler.addItemDecoration(dividerItemDecoration)
         }
 
-        adapter = MealAdapter { meal ->
-            val action = MealsSearchFragmentDirections.
-                actionMealsSearchFragmentToMealDetailFragment(meal)
-            Navigation.findNavController(binding.root).navigate(action)
-        }
+        adapter = MealAdapter { meal -> viewModel.onMealTapped(meal) }
 
         binding.mealsRecycler.adapter = adapter
+    }
+
+    private fun onMealTapped(meal: Meal) {
+        val action = MealsSearchFragmentDirections.
+            actionMealsSearchFragmentToMealDetailFragment(meal)
+        Navigation.findNavController(binding.root).navigate(action)
     }
 }
