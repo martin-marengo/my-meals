@@ -10,8 +10,11 @@
             android:id="@+id/meals_search_edit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:hint="Search your meal..."
+            android:layout_marginTop="@dimen/search_marging_top"
+            android:hint="@string/search_meal_hint"
+            android:singleLine="true"
+            android:layout_marginStart="@dimen/search_marging_lateral"
+            android:layout_marginEnd="@dimen/search_marging_lateral"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -31,10 +34,10 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/meals_recycler"
+            app:layout_constraintEnd_toEndOf="@+id/meals_recycler"
             app:layout_constraintStart_toStartOf="@+id/meals_recycler"
-            app:layout_constraintTop_toBottomOf="@+id/meals_search_edit" />
+            app:layout_constraintTop_toTopOf="@+id/meals_recycler" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

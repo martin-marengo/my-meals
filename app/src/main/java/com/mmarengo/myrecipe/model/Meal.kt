@@ -9,4 +9,3 @@ data class Meal(
     @Json(name = "strCategory") val category: String,
     @Json(name = "strMealThumb") val thumbUrl: String?
 ) : Serializable
-

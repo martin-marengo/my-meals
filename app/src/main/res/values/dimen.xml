@@ -3,6 +3,9 @@
     <dimen name="item_padding">8dp</dimen>
     <dimen name="item_padding_lateral">16dp</dimen>
 
+    <dimen name="search_marging_lateral">8dp</dimen>
+    <dimen name="search_marging_top">16dp</dimen>
+
     <dimen name="thumb_size">96dp</dimen>
 
     <dimen name="item_text_start_margin">8dp</dimen>

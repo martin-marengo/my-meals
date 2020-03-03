@@ -26,7 +26,7 @@ class MealsViewModel : ViewModel() {
         get() = _eventError
 
     init {
-        // set initial image for no meals
+        // Set initial image.
     }
 
     fun searchMeals(query: String) {
@@ -34,8 +34,7 @@ class MealsViewModel : ViewModel() {
         mealRepository.searchMeal(query, searchResponseCallback)
     }
 
-    private val searchResponseCallback = object :
-        ResponseCallback<List<Meal>> {
+    private val searchResponseCallback = object : ResponseCallback<List<Meal>> {
 
         override fun onSuccess(value: List<Meal>?) {
             _dataMeals.value = value

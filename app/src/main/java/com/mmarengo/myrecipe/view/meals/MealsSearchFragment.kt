@@ -36,11 +36,15 @@ class MealsSearchFragment : Fragment() {
             container,
             false)
 
-        setUpSearchBox()
         setUpMealList()
         setUpObservers()
 
         return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        setUpSearchBox()
     }
 
     private fun setUpObservers() {
@@ -63,17 +67,15 @@ class MealsSearchFragment : Fragment() {
 
         viewModel.dataMeals.observe(viewLifecycleOwner, Observer { mealList ->
             adapter.submitList(mealList)
+            // Set image for empty result.
         })
     }
 
     private fun setUpSearchBox() {
         binding.mealsSearchEdit.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(p0: Editable?) {
-            }
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
+            override fun afterTextChanged(p0: Editable?) {}
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                // TODO: evitar hacer un search al rotar la pantalla
                 viewModel.searchMeals(p0.toString())
             }
         })
@@ -95,6 +97,7 @@ class MealsSearchFragment : Fragment() {
                 actionMealsSearchFragmentToMealDetailFragment(meal)
             Navigation.findNavController(binding.root).navigate(action)
         }
+
         binding.mealsRecycler.adapter = adapter
     }
 }
