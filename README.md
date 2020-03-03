@@ -1,2 +1,2 @@
-# my-meals
-My meals search - Example Android app
+# the-meal
+The meal: example Android app to browse meals in https://www.themealdb.com/
