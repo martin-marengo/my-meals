@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/mealsSearchFragment"
-        android:name="com.mmarengo.myrecipe.view.meals.MealsSearchFragment"
+        android:name="com.mmarengo.themeal.view.meals.MealsSearchFragment"
         android:label="MealsSearchFragment" >
         <action
             android:id="@+id/action_mealsSearchFragment_to_mealDetailFragment"
@@ -14,10 +14,10 @@
     </fragment>
     <fragment
         android:id="@+id/mealDetailFragment"
-        android:name="com.mmarengo.myrecipe.view.detail.MealDetailFragment"
+        android:name="com.mmarengo.themeal.view.detail.MealDetailFragment"
         android:label="MealDetailFragment" >
         <argument
             android:name="meal"
-            app:argType="com.mmarengo.myrecipe.model.Meal" />
+            app:argType="com.mmarengo.themeal.model.Meal" />
     </fragment>
 </navigation>

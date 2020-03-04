@@ -7,7 +7,7 @@ android {
     compileSdkVersion 29
 
     defaultConfig {
-        applicationId "com.mmarengo.myrecipe"
+        applicationId "com.mmarengo.themeal"
         minSdkVersion 19
         targetSdkVersion 29
         versionCode 1

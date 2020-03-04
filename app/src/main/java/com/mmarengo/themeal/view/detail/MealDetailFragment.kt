@@ -1,4 +1,4 @@
-package com.mmarengo.myrecipe.view.detail
+package com.mmarengo.themeal.view.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.mmarengo.myrecipe.R
-import com.mmarengo.myrecipe.databinding.FragmentMealDetailBinding
+import com.mmarengo.themeal.R
+import com.mmarengo.themeal.databinding.FragmentMealDetailBinding
 
 class MealDetailFragment : Fragment() {
 

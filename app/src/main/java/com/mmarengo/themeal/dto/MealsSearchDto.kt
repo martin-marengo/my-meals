@@ -1,6 +1,6 @@
-package com.mmarengo.myrecipe.dto
+package com.mmarengo.themeal.dto
 
-import com.mmarengo.myrecipe.model.Meal
+import com.mmarengo.themeal.model.Meal
 import com.squareup.moshi.Json
 
 data class MealsSearchDto(

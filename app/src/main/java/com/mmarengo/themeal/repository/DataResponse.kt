@@ -1,4 +1,4 @@
-package com.mmarengo.myrecipe.repository
+package com.mmarengo.themeal.repository
 
 import okhttp3.ResponseBody
 

@@ -1,7 +1,7 @@
-package com.mmarengo.productskt.networking
+package com.mmarengo.themeal.networking
 
-import com.mmarengo.myrecipe.dto.MealsSearchDto
-import com.mmarengo.myrecipe.model.Meal
+import com.mmarengo.themeal.dto.MealsSearchDto
+import com.mmarengo.themeal.model.Meal
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Call

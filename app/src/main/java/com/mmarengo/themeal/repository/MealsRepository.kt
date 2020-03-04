@@ -1,8 +1,8 @@
-package com.mmarengo.myrecipe.repository
+package com.mmarengo.themeal.repository
 
-import com.mmarengo.myrecipe.dto.MealsSearchDto
-import com.mmarengo.myrecipe.model.Meal
-import com.mmarengo.productskt.networking.MealsApi
+import com.mmarengo.themeal.dto.MealsSearchDto
+import com.mmarengo.themeal.model.Meal
+import com.mmarengo.themeal.networking.MealsApi
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

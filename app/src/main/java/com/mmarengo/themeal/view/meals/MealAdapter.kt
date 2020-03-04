@@ -1,4 +1,4 @@
-package com.mmarengo.myrecipe.view.meals
+package com.mmarengo.themeal.view.meals
 
 import android.net.Uri
 import android.view.LayoutInflater
@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.mmarengo.myrecipe.R
-import com.mmarengo.myrecipe.databinding.ItemMealBinding
-import com.mmarengo.myrecipe.model.Meal
+import com.mmarengo.themeal.R
+import com.mmarengo.themeal.databinding.ItemMealBinding
+import com.mmarengo.themeal.model.Meal
 
 class MealAdapter(private val clickListener: (Meal) -> Unit) :
     ListAdapter<Meal, MealAdapter.MealViewHolder>(MealDiffCallback()) {

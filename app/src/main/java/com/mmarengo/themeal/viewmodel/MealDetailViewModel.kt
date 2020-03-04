@@ -1,4 +1,4 @@
-package com.mmarengo.myrecipe.viewmodel
+package com.mmarengo.themeal.viewmodel
 
 import androidx.lifecycle.ViewModel
 

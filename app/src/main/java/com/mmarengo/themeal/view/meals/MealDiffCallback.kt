@@ -1,7 +1,7 @@
-package com.mmarengo.myrecipe.view.meals
+package com.mmarengo.themeal.view.meals
 
 import androidx.recyclerview.widget.DiffUtil
-import com.mmarengo.myrecipe.model.Meal
+import com.mmarengo.themeal.model.Meal
 
 class MealDiffCallback : DiffUtil.ItemCallback<Meal>() {
 

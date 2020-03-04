@@ -1,13 +1,13 @@
-package com.mmarengo.myrecipe.viewmodel
+package com.mmarengo.themeal.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.mmarengo.myrecipe.R
-import com.mmarengo.myrecipe.model.Meal
-import com.mmarengo.myrecipe.repository.DataResponse
-import com.mmarengo.myrecipe.repository.MealsRepository
-import com.mmarengo.myrecipe.repository.ResponseCallback
+import com.mmarengo.themeal.R
+import com.mmarengo.themeal.model.Meal
+import com.mmarengo.themeal.repository.DataResponse
+import com.mmarengo.themeal.repository.MealsRepository
+import com.mmarengo.themeal.repository.ResponseCallback
 
 class MealsViewModel : ViewModel() {
 

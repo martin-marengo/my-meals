@@ -1,4 +1,4 @@
-package com.mmarengo.myrecipe.model
+package com.mmarengo.themeal.model
 
 import com.squareup.moshi.Json
 import java.io.Serializable

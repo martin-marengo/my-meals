@@ -1,8 +1,8 @@
-package com.mmarengo.myrecipe.view
+package com.mmarengo.themeal.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.mmarengo.myrecipe.R
+import com.mmarengo.themeal.R
 
 class MealsActivity : AppCompatActivity() {
 

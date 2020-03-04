@@ -1,4 +1,4 @@
-package com.mmarengo.myrecipe.view.meals
+package com.mmarengo.themeal.view.meals
 
 import android.os.Bundle
 import android.text.Editable
@@ -14,10 +14,10 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
-import com.mmarengo.myrecipe.R
-import com.mmarengo.myrecipe.databinding.FragmentMealsSearchBinding
-import com.mmarengo.myrecipe.model.Meal
-import com.mmarengo.myrecipe.viewmodel.MealsViewModel
+import com.mmarengo.themeal.R
+import com.mmarengo.themeal.databinding.FragmentMealsSearchBinding
+import com.mmarengo.themeal.model.Meal
+import com.mmarengo.themeal.viewmodel.MealsViewModel
 
 class MealsSearchFragment : Fragment() {
 
