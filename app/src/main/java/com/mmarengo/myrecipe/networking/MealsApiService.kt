@@ -1,9 +1,11 @@
 package com.mmarengo.productskt.networking
 
 import com.mmarengo.myrecipe.dto.MealsSearchDto
+import com.mmarengo.myrecipe.model.Meal
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
@@ -24,6 +26,9 @@ interface MealsApiService {
 
     @GET("search.php")
     fun searchMeals(@Query("s") query: String): Call<MealsSearchDto>
+
+    @GET("lookup.php")
+    suspend fun getMeal(@Query("i") id: Long): Response<Meal>
 }
 
 object MealsApi {

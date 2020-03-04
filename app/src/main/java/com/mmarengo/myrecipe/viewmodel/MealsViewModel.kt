@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.mmarengo.myrecipe.R
 import com.mmarengo.myrecipe.model.Meal
-import com.mmarengo.myrecipe.repository.ErrorType
+import com.mmarengo.myrecipe.repository.DataResponse
 import com.mmarengo.myrecipe.repository.MealsRepository
 import com.mmarengo.myrecipe.repository.ResponseCallback
 
@@ -39,7 +39,7 @@ class MealsViewModel : ViewModel() {
 
     fun searchMeals(query: String) {
         _dataIsLoading.value = true
-        mealRepository.searchMeal(query, searchResponseCallback)
+        mealRepository.searchMeals(query, searchResponseCallback)
         _currentSearch = query
     }
 
@@ -58,7 +58,17 @@ class MealsViewModel : ViewModel() {
             _dataIsLoading.value = false
         }
 
-        override fun onError(errorType: ErrorType, errorCode: Int?, t: Throwable?) {
+        override fun onGenericError(dataResponse: DataResponse.GenericError) {
+            onError()
+            // Track generic error
+        }
+
+        override fun onConnectionError(dataResponse: DataResponse.ConnectionError) {
+            onError()
+            // Track connection error
+        }
+
+        private fun onError() {
             _eventError.value = R.string.no_meals_error
             _dataIsLoading.value = false
         }

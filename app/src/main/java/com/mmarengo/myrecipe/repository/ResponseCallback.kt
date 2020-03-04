@@ -4,5 +4,7 @@ interface ResponseCallback<T> {
 
     fun onSuccess(value: T?)
 
-    fun onError(errorType: ErrorType, errorCode: Int? = null, t: Throwable? = null)
+    fun onGenericError(dataResponse: DataResponse.GenericError)
+
+    fun onConnectionError(dataResponse: DataResponse.ConnectionError)
 }

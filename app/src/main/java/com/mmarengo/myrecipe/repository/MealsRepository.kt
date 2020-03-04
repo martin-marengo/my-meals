@@ -14,28 +14,49 @@ class MealsRepository {
 
     private var currentSearchCall: Call<MealsSearchDto>? = null
 
-    fun searchMeal(query: String, callback: ResponseCallback<List<Meal>>) {
+    fun searchMeals(query: String, callback: ResponseCallback<List<Meal>>) {
         currentSearchCall?.cancel()
         currentSearchCall = mealsApiService.searchMeals(query)
-        currentSearchCall?.enqueue(object : Callback<MealsSearchDto> {
 
+        currentSearchCall?.enqueue(object : Callback<MealsSearchDto> {
             override fun onResponse(call: Call<MealsSearchDto>, response: Response<MealsSearchDto>) {
                 if (response.isSuccessful && response.body() != null) {
                     callback.onSuccess(response.body()!!.meals)
                 } else {
-                    callback.onError(ErrorType.GENERIC, response.code())
+                    callback.onGenericError(
+                        DataResponse.GenericError(response.code(), response.errorBody())
+                    )
                 }
             }
-
             override fun onFailure(call: Call<MealsSearchDto>, t: Throwable) {
                 if (!call.isCanceled) {
                     if (t is IOException) {
-                        callback.onError(ErrorType.CONNECTION, t = t)
+                        callback.onConnectionError(DataResponse.ConnectionError(t))
                     } else {
-                        callback.onError(ErrorType.GENERIC, t = t)
+                        callback.onGenericError(DataResponse.GenericError(t = t))
                     }
                 }
             }
         })
+    }
+
+    suspend fun getMeal(id: Long): DataResponse<Meal> {
+        return try {
+            handleResponse(mealsApiService.getMeal(id))
+        } catch (e: Exception) {
+            if (e is IOException) {
+                DataResponse.ConnectionError(t = e)
+            } else {
+                DataResponse.GenericError(t = e)
+            }
+        }
+    }
+
+    private fun <T> handleResponse(response: Response<T>): DataResponse<T> {
+        return if (response.isSuccessful && response.body() != null) {
+            DataResponse.Success(response.body()!!)
+        } else {
+            DataResponse.GenericError(response.code(), response.errorBody())
+        }
     }
 }
