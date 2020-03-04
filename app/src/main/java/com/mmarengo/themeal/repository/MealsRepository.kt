@@ -2,6 +2,7 @@ package com.mmarengo.themeal.repository
 
 import com.mmarengo.themeal.dto.MealsSearchDto
 import com.mmarengo.themeal.model.Meal
+import com.mmarengo.themeal.model.MealDetail
 import com.mmarengo.themeal.networking.MealsApi
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,7 +21,7 @@ class MealsRepository {
 
         currentSearchCall?.enqueue(object : Callback<MealsSearchDto> {
             override fun onResponse(call: Call<MealsSearchDto>, response: Response<MealsSearchDto>) {
-                if (response.isSuccessful && response.body() != null) {
+                if (response.hasSuccessBody) {
                     callback.onSuccess(response.body()!!.meals)
                 } else {
                     callback.onGenericError(
@@ -40,9 +41,14 @@ class MealsRepository {
         })
     }
 
-    suspend fun getMeal(id: Long): DataResponse<Meal> {
+    suspend fun getMeal(id: Long): DataResponse<MealDetail?> {
         return try {
-            handleResponse(mealsApiService.getMeal(id))
+            val response = mealsApiService.getMeal(id)
+            if (response.hasSuccessBody) {
+                DataResponse.Success(response.body()!!.mealDetail)
+            } else {
+                DataResponse.GenericError(response.code(), response.errorBody())
+            }
         } catch (e: Exception) {
             if (e is IOException) {
                 DataResponse.ConnectionError(t = e)
@@ -52,11 +58,6 @@ class MealsRepository {
         }
     }
 
-    private fun <T> handleResponse(response: Response<T>): DataResponse<T> {
-        return if (response.isSuccessful && response.body() != null) {
-            DataResponse.Success(response.body()!!)
-        } else {
-            DataResponse.GenericError(response.code(), response.errorBody())
-        }
-    }
+    private val <T> Response<T>.hasSuccessBody: Boolean
+        get() = isSuccessful && body() != null
 }
