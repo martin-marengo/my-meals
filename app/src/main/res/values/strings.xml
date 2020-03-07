@@ -2,4 +2,5 @@
     <string name="app_name">The Meal</string>
     <string name="no_meals_error">Couldn\'t find meals</string>
     <string name="search_meal_hint">Search your meal…</string>
+    <string name="detail_instructions_title">Instructions</string>
 </resources>
