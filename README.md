@@ -1,5 +1,5 @@
-# the-meal
-The meal: example Android app to browse meals in https://www.themealdb.com/
+# tThe meal
+Example Android app to browse meals in https://www.themealdb.com/
 
 ## TODO:
 ### Features:
