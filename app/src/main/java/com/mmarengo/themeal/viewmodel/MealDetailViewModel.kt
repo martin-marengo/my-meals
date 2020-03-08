@@ -1,6 +1,5 @@
 package com.mmarengo.themeal.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,9 +12,6 @@ import kotlinx.coroutines.launch
 
 class MealDetailViewModel(private val meal: Meal) : ViewModel() {
 
-    companion object {
-        val TAG = MealDetailViewModel::class.java.simpleName
-    }
     private val mealsRepository by lazy { MealsRepository() }
 
     private val _dataIsLoading = MutableLiveData<Boolean>()
@@ -39,13 +35,12 @@ class MealDetailViewModel(private val meal: Meal) : ViewModel() {
                     _mealDetail.value = response.value
                     _dataIsLoading.value = false
                 }
-                // TODO: implement error handling.
                 is DataResponse.GenericError ->  {
-                    Log.d(TAG, "Generic error")
+                    // Handle error
                     _dataIsLoading.value = false
                 }
                 is DataResponse.ConnectionError ->  {
-                    Log.d(TAG, "Connection error")
+                    // Handle error
                     _dataIsLoading.value = false
                 }
             }

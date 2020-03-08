@@ -13,4 +13,6 @@ sealed class DataResponse<out T> {
     ) : DataResponse<Nothing>()
 
     data class ConnectionError(val t: Throwable? = null) : DataResponse<Nothing>()
+
+    object Cancelled : DataResponse<Nothing>()
 }

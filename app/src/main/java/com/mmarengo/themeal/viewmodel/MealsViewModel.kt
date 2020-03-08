@@ -1,22 +1,23 @@
 package com.mmarengo.themeal.viewmodel
 
 import android.os.CountDownTimer
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.mmarengo.themeal.R
 import com.mmarengo.themeal.model.Meal
 import com.mmarengo.themeal.repository.DataResponse
 import com.mmarengo.themeal.repository.MealsRepository
-import com.mmarengo.themeal.repository.ResponseCallback
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 class MealsViewModel : ViewModel() {
 
     companion object {
         const val TYPING_SEARCH_DELAY: Long = 500
     }
-    private val mealRepository: MealsRepository by lazy { MealsRepository() }
+    private val mealsRepository: MealsRepository by lazy { MealsRepository() }
 
     private var _currentSearch: String? = null
     val currentSearch: String?
@@ -39,6 +40,7 @@ class MealsViewModel : ViewModel() {
         get() = _eventMealTapped
 
     private var searchTimer: SearchTimer? = null
+    private var currentSearchJob: Job? = null
 
     fun searchMeals(query: String) {
         searchTimer?.cancel()
@@ -74,31 +76,29 @@ class MealsViewModel : ViewModel() {
         if (_dataIsLoading.value != true) {
             _dataIsLoading.value = true
         }
-        mealRepository.searchMeals(query, searchResponseCallback)
+        currentSearchJob?.cancel()
+        currentSearchJob = viewModelScope.launch {
+            when (val response = mealsRepository.searchMeals(query)) {
+                is DataResponse.Success -> {
+                    _dataMeals.value = response.value
+                    _dataIsLoading.value = false
+                }
+                is DataResponse.GenericError ->  {
+                    // Track generic error
+                    onError()
+                }
+                is DataResponse.ConnectionError ->  {
+                    // Track connection error
+                    onError()
+                }
+            }
+        }
         _currentSearch = query
     }
 
-    private val searchResponseCallback = object : ResponseCallback<List<Meal>> {
-
-        override fun onSuccess(value: List<Meal>?) {
-            _dataMeals.value = value
-            _dataIsLoading.value = false
-        }
-
-        override fun onGenericError(dataResponse: DataResponse.GenericError) {
-            onError()
-            // Track generic error
-        }
-
-        override fun onConnectionError(dataResponse: DataResponse.ConnectionError) {
-            onError()
-            // Track connection error
-        }
-
-        private fun onError() {
-            _eventError.value = R.string.no_meals_error
-            _dataIsLoading.value = false
-        }
+    private fun onError() {
+        _eventError.value = R.string.no_meals_error
+        _dataIsLoading.value = false
     }
 
     override fun onCleared() {

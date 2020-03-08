@@ -25,7 +25,7 @@ private val retrofit = Retrofit.Builder()
 interface MealsApiService {
 
     @GET("search.php")
-    fun searchMeals(@Query("s") query: String): Call<MealsSearchDto>
+    suspend fun searchMeals(@Query("s") query: String): Response<MealsSearchDto>
 
     @GET("lookup.php")
     suspend fun getMeal(@Query("i") id: Long): Response<MealDetailDto>
