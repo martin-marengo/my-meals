@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="item_padding">8dp</dimen>
-    <dimen name="item_padding_lateral">16dp</dimen>
-
     <dimen name="search_marging_lateral">8dp</dimen>
     <dimen name="search_marging_top">16dp</dimen>
 
-    <dimen name="thumb_size">96dp</dimen>
-
+    <dimen name="item_padding">8dp</dimen>
+    <dimen name="item_padding_lateral">16dp</dimen>
     <dimen name="item_text_start_margin">8dp</dimen>
     <dimen name="item_text_top_margin">4dp</dimen>
+
+    <dimen name="thumb_list_size">96dp</dimen>
+    <dimen name="thumb_detail_size">120dp</dimen>
+
+    <dimen name="detail_margin">16dp</dimen>
+    <dimen name="detail_view_margin">16dp</dimen>
+    <dimen name="detail_view_margin_big">32dp</dimen>
 </resources>

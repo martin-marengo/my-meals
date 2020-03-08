@@ -2,10 +2,15 @@
 The meal: example Android app to browse meals in https://www.themealdb.com/
 
 ## TODO:
-- ActionBar and back navigation for detail fragment.
-- Animations between fragments.
-- Add timer for search typing.
-- Implement coroutines for searching.
+### Features:
+- Add random banner with timer to search fragment.
+- Add YouTube video to detail fragment.
+### UX improvements
+- Add up button to detail fragment.
+- Add transition animations between fragments.
 - Add search view in ActionBar.
-- Util for Glide loading.
-- Move resources
+### Performance improvements
+- Add timer for search typing.
+### Code improvements
+- Refactor search with coroutines and job cancellation.
+- Util for Glide image loading.

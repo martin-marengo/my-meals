@@ -18,8 +18,8 @@
 
         <ImageView
             android:id="@+id/meal_image"
-            android:layout_width="@dimen/thumb_size"
-            android:layout_height="@dimen/thumb_size"
+            android:layout_width="@dimen/thumb_list_size"
+            android:layout_height="@dimen/thumb_list_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
