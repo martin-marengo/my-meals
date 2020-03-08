@@ -1,4 +1,4 @@
-# tThe meal
+# The meal
 Example Android app to browse meals in https://www.themealdb.com/
 
 ## TODO:
