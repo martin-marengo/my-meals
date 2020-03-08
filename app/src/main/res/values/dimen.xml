@@ -9,7 +9,7 @@
     <dimen name="item_text_top_margin">4dp</dimen>
 
     <dimen name="thumb_list_size">96dp</dimen>
-    <dimen name="thumb_detail_size">120dp</dimen>
+    <dimen name="thumb_detail_size">160dp</dimen>
 
     <dimen name="detail_margin">16dp</dimen>
     <dimen name="detail_view_margin">16dp</dimen>

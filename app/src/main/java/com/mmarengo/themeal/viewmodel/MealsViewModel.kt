@@ -1,5 +1,7 @@
 package com.mmarengo.themeal.viewmodel
 
+import android.os.CountDownTimer
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,6 +13,9 @@ import com.mmarengo.themeal.repository.ResponseCallback
 
 class MealsViewModel : ViewModel() {
 
+    companion object {
+        const val TYPING_SEARCH_DELAY: Long = 500
+    }
     private val mealRepository: MealsRepository by lazy { MealsRepository() }
 
     private var _currentSearch: String? = null
@@ -33,14 +38,17 @@ class MealsViewModel : ViewModel() {
     val eventMealTapped: LiveData<Meal?>
         get() = _eventMealTapped
 
-    init {
-        // Set initial image.
-    }
+    private var searchTimer: SearchTimer? = null
 
     fun searchMeals(query: String) {
-        _dataIsLoading.value = true
-        mealRepository.searchMeals(query, searchResponseCallback)
-        _currentSearch = query
+        searchTimer?.cancel()
+        if (searchTimer == null) {
+            searchTimer = SearchTimer(TYPING_SEARCH_DELAY)
+        }
+        searchTimer?.let {
+            it.query = query
+            it.start()
+        }
     }
 
     fun onMealTapped(meal: Meal) {
@@ -49,6 +57,25 @@ class MealsViewModel : ViewModel() {
 
     fun onMealTappedFinished() {
         _eventMealTapped.value = null
+    }
+
+    private inner class SearchTimer(time: Long) : CountDownTimer(time, time) {
+        var query: String = ""
+
+        override fun onTick(millisUntilFinished: Long) {
+            // no-op
+        }
+        override fun onFinish() {
+            performSearch(query)
+        }
+    }
+
+    private fun performSearch(query: String) {
+        if (_dataIsLoading.value != true) {
+            _dataIsLoading.value = true
+        }
+        mealRepository.searchMeals(query, searchResponseCallback)
+        _currentSearch = query
     }
 
     private val searchResponseCallback = object : ResponseCallback<List<Meal>> {
@@ -72,5 +99,11 @@ class MealsViewModel : ViewModel() {
             _eventError.value = R.string.no_meals_error
             _dataIsLoading.value = false
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        searchTimer?.cancel()
+        searchTimer = null
     }
 }
