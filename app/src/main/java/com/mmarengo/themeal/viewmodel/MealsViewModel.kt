@@ -44,6 +44,7 @@ class MealsViewModel : ViewModel() {
 
     fun searchMeals(query: String) {
         searchTimer?.cancel()
+        currentSearchJob?.cancel()
         if (searchTimer == null) {
             searchTimer = SearchTimer(TYPING_SEARCH_DELAY)
         }
