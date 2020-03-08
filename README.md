@@ -5,12 +5,12 @@ Example Android app to browse meals in https://www.themealdb.com/
 ### Features:
 - Add random banner with timer to search fragment.
 - Add YouTube video to detail fragment.
-### UX improvements
+### UX:
 - Add up button to detail fragment.
 - Add transition animations between fragments.
 - Add search view in ActionBar.
-### Performance improvements
+### Performance:
 - Add timer for search typing.
-### Code improvements
+### Code:
 - Refactor search with coroutines and job cancellation.
 - Util for Glide image loading.
