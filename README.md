@@ -11,7 +11,6 @@ Example Android app to browse meals in https://www.themealdb.com/
 - Add transition animations between fragments.
 - Add search view in ActionBar.
 ### Code / performance / others:
-- Add timer for search typing.
 - Refactor search with coroutines and job cancellation.
 - Track/manage error cases.
 - Util for Glide image loading.
