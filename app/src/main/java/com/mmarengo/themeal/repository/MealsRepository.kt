@@ -20,11 +20,7 @@ class MealsRepository {
                 DataResponse.GenericError(response.code(), response.errorBody())
             }
         } catch (e: Exception) {
-            when(e) {
-                is CancellationException -> DataResponse.Cancelled
-                is IOException -> DataResponse.ConnectionError(t = e)
-                else -> DataResponse.GenericError(t = e)
-            }
+            getExceptionResponse(e)
         }
     }
 
@@ -37,11 +33,15 @@ class MealsRepository {
                 DataResponse.GenericError(response.code(), response.errorBody())
             }
         } catch (e: Exception) {
-            when(e) {
-                is CancellationException -> DataResponse.Cancelled
-                is IOException -> DataResponse.ConnectionError(t = e)
-                else -> DataResponse.GenericError(t = e)
-            }
+            getExceptionResponse(e)
+        }
+    }
+
+    private fun <T> getExceptionResponse(e: Exception) : DataResponse<T> {
+        return when(e) {
+            is CancellationException -> DataResponse.Cancelled
+            is IOException -> DataResponse.ConnectionError(t = e)
+            else -> DataResponse.GenericError(t = e)
         }
     }
 

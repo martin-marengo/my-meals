@@ -10,7 +10,7 @@ import com.mmarengo.themeal.repository.DataResponse
 import com.mmarengo.themeal.repository.MealsRepository
 import kotlinx.coroutines.launch
 
-class MealDetailViewModel(private val meal: Meal) : ViewModel() {
+class MealDetailViewModel(meal: Meal) : ViewModel() {
 
     private val mealsRepository by lazy { MealsRepository() }
 

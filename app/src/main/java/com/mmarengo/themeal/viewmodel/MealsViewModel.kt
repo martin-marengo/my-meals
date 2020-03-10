@@ -74,7 +74,7 @@ class MealsViewModel : ViewModel() {
     }
 
     private fun performSearch(query: String) {
-        if (_dataIsLoading.value != true) {
+        if (_dataIsLoading.value == false) {
             _dataIsLoading.value = true
         }
         currentSearchJob?.cancel()
